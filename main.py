@@ -10,6 +10,10 @@ all_exceptions = [list_exeption_domain, list_exeption_email]
 if not os.path.exists(result_dir):
 	os.makedirs(result_dir)
 
+def writeEx(open_file_base, email):
+	with open(f'{result_dir}/{open_file_base}', 'a+') as file:
+		file.write(f'{email}\n')
+
 def searchFile():
 	list_file_base = []
 	for search_bases in os.listdir(base_dir):list_file_base+=[search_bases]
@@ -51,6 +55,7 @@ def cleaning():
 				if domain in email:
 					number_domain += 1
 					print(f'[ Domain {number_domain} ] {email}')
+					writeEx(open_file_base, email)
 					break 
 
 
@@ -61,6 +66,7 @@ def cleaning():
 			if email_ex in emails:
 				number_email+=1
 				print(f'[ Email {number_email}] {email_ex}')
+				writeEx(open_file_base, email_ex)
 
 if __name__ == '__main__':
 	try:
