@@ -3,4 +3,5 @@ Exceptions/exception_email.txt
 Exceptions/exception_domain.txt
 Base/*
 Result/*
+__pycache__/
 startup/*
