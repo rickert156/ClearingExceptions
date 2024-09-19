@@ -1,9 +1,14 @@
 import csv
 from collections import defaultdict
+from main import searchFile
 
+result_dir = 'Result'
+base_dir = 'Base'
 domain_dict = {}
 
-with open('emails.csv', newline='') as csvfile:
+email_base = searchFile()
+
+with open(f'{base_dir}/{email_base}', newline='') as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
         email = row['Email']
@@ -12,9 +17,9 @@ with open('emails.csv', newline='') as csvfile:
         if domain not in domain_dict:
             domain_dict[domain] = row
 
-with open('nodubl.csv', 'w', newline='') as csvfile:
-    fieldnames = ['Company', 'Email', 'Site' ]
+with open(f'{result_dir}/NoRepit_{email_base}', 'w', newline='') as csvfile:
+    fieldnames = ['Company', 'Email', 'Name' ]
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     writer.writeheader()
     for data in domain_dict.values():
-        writer.writerow({'Company': data['Company'], 'Email': data['Email'], 'Site': data['Site'] })
+        writer.writerow({'Company': data['Company'], 'Email': data['Email'], 'Name': data['Name'] })
