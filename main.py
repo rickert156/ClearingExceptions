@@ -14,7 +14,7 @@ def writeEx(open_file_base, email):
 	with open(f'{result_dir}/{open_file_base}', 'a+') as file:
 		file.write(f'{email}\n')
 
-def searchFile():
+def searchFile(base_dir):
 	list_file_base = []
 	for search_bases in os.listdir(base_dir):list_file_base+=[search_bases]
 
@@ -35,12 +35,12 @@ def searchFile():
 			return enter_list	
 	except Exception as ex:
 		print(f'\nCode Error: {ex}\nПопробуй еще раз...\n')
-		searchFile()
+		searchFile(base_dir)
 		
 
 def cleaning():
 	emails = []
-	open_file_base = searchFile()
+	open_file_base = searchFile(base_dir)
 	with open(f'{base_dir}/{open_file_base}', 'r') as file_base:
 		for row in csv.DictReader(file_base):
 			email_base = row['Email']

@@ -6,7 +6,7 @@ result_dir = 'Result'
 base_dir = 'Base'
 domain_dict = {}
 
-email_base = searchFile()
+email_base = searchFile(base_dir)
 
 with open(f'{base_dir}/{email_base}', newline='') as csvfile:
     reader = csv.DictReader(csvfile)
